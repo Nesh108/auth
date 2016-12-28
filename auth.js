@@ -33,9 +33,11 @@ let success = output => {
 	found = true;
 	console.log(output);
 
-	let proc = spawn("pbcopy");
-	proc.stdin.write(output);
-	proc.stdin.end();
+	if (os.platform() === "darwin") {
+		let proc = spawn("pbcopy");
+		proc.stdin.write(output);
+		proc.stdin.end();
+	}
 }
 
 // Check them for names or alts

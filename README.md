@@ -29,4 +29,4 @@ The app can be used by the `auth` command. It reads the tokens from a `.json` fi
 ]
 ```
 
-Spaces and capital letters will automatically be stripped from the `secret` field. The alt names are shorter names that you can use to generate tokens. On a Mac the token value will automatically be copied to the clipboard.
+Spaces and capital letters will automatically be stripped from the `secret` field. The alt names are shorter names that you can use to generate tokens. On Mac OS X the token value will automatically be copied to the clipboard.
