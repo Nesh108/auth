@@ -42,15 +42,16 @@ let success = output => {
 
 // Check them for names or alts
 tokens.forEach(token => {
-
 	let output = a.generateToken(token.secret);
 
 	// Check for the primary name
-	if (token.name.toLowerCase() === argString) success(output);
+	if (token.name.toLowerCase() === argString)
+		success(output);
 
 	// Check alternate names
 	token.alt.forEach(alt => {
-		if (argString === alt && !found) success(output);
+		if (argString === alt && !found)
+			success(output);
 	});
 });
 
