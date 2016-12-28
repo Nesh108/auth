@@ -23,6 +23,8 @@ Generate your two factor authentication codes
   Google (g, go)
   GitHub (gh, hub)
 
+$ auth gh
+104295
 ```
 
 It reads the tokens from a `.json` file located at `$HOME/.config/auth/tokens` (not `tokens.json`). The contents of the file should resemble something like this:
