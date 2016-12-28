@@ -12,7 +12,20 @@ npm link
 ```
 
 ## Usage
-The app can be used by the `auth` command. It reads the tokens from a `.json` file located at `$HOME/.config/auth/tokens` (not `tokens.json`). The contents of the file should resemble something like this:
+The app can be used by the `auth` command.
+
+```console
+$ auth
+Usage: auth <name|alt>
+Generate your two factor authentication codes
+(Available tokens are shown below)
+
+  Google (g, go)
+  GitHub (gh, hub)
+
+```
+
+It reads the tokens from a `.json` file located at `$HOME/.config/auth/tokens` (not `tokens.json`). The contents of the file should resemble something like this:
 
 ```json
 [
