@@ -1,0 +1,9 @@
+{
+  "name": "auth",
+  "dependencies": {
+    "authenticator": "^1.1.2"
+  },
+  "bin": {
+    "auth": "auth.js"
+  }
+}
