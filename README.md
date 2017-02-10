@@ -2,7 +2,7 @@
 A simple CLI app for managing your two-factor authentication tokens
 
 ## Installation
-Currently this package is not on the global `npm` registry, so it must be installed manually.
+You can install with `npm install -g authcli`. If you do not wish to install from `npm`, you can install it manually:
 
 ```console
 git clone https://github.com/sam3d/auth
