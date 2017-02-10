@@ -1,5 +1,25 @@
 {
-  "name": "auth",
+  "name": "authcli",
+  "description": "A simple CLI app for managing your two-factor authentication tokens",
+  "keywords": [
+    "auth",
+    "cli",
+    "2fa",
+    "two",
+    "factor",
+    "otp",
+    "password"
+  ],
+  "version": "0.1.0",
+  "bugs": {
+    "url": "https://github.com/sam3d/auth/issues",
+    "email": "samholmes1337@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sam3d/auth"
+  },
+  "license": "MIT",
   "dependencies": {
     "authenticator": "^1.1.2"
   },
