@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-let a = require("authenticator");
-let spawn = require("child_process").spawn;
-let fs = require("fs");
-let os = require("os");
-let path = require("path");
+const a = require("authenticator");
+const spawn = require("child_process").spawn;
+const fs = require("fs");
+const os = require("os");
+const path = require("path");
 
 let configPath = path.join(os.homedir(), "/.config/auth/tokens");
 
