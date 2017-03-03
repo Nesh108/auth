@@ -48,11 +48,11 @@ tokens.forEach(token => {
 	});
 });
 
-if (!found && args.length > 0) {
+if (!found && args.length) {
 	console.log(`Could not find a "${argString}" token`);
 }
 
-if (args.length === 0) {
+if (!args.length) {
 
 	console.log(`Usage: auth <name|alt>
 Generate your two factor authentication codes
