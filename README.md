@@ -1,4 +1,4 @@
-# auth
+# auth [![npm version](https://badge.fury.io/js/authcli.svg)](https://badge.fury.io/js/authcli)
 A simple CLI app for managing your two-factor authentication tokens
 
 ## Installation
