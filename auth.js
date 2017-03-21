@@ -1,58 +1,77 @@
 #!/usr/bin/env node
-const a = require("authenticator");
+
+"use strict";
+
+const authenticator = require("authenticator");
 const spawn = require("child_process").spawn;
 const fs = require("fs");
 const os = require("os");
 const path = require("path");
 
-let configPath = path.join(os.homedir(), "/.local/share/auth/tokens");
+let config = path.join(os.homedir(), "/.local/share/auth/tokens");
 
-if (!fs.existsSync(configPath)) {
-	console.log(`Error: No token file found at ${configPath}`);
+let error = message => {
+	console.log(`Error: ${message}`);
 	process.exit(1);
+};
+
+fs.readFile(config, "utf8", (err, data) => {
+	if (err) error(`No token file found at ${config}`);
+	parseConfig(data);
+});
+
+let parseConfig = tokens => {
+
+	try {
+		var tokens = JSON.parse(tokens);
+	} catch (e) {
+		error(`Could not parse the file at ${config}`);
+	}
+
+	parseArgs(tokens);
+
+};
+
+let parseArgs = tokens => {
+
+	let args = process.argv.splice(2, process.argv.length);
+	let argString = args.join(" ").toLowerCase();
+
+	if (args.length) searchTokens(tokens, argString);
+	else printHelp(tokens);
+
+};
+
+let searchTokens = (tokens, argString) => {
+
+	let token = tokens.find(token => {
+
+		let name = token.name.toLowerCase() === argString;
+		let alt = token.alt.find(alt => alt === argString);
+		return name || alt;
+
+	});
+
+	if (token) generateToken(token.secret);
+	else error(`Could not find a "${argString}" token`);
+
 }
 
-let tokens;
+let generateToken = secret => {
 
-try {
-	tokens = JSON.parse(fs.readFileSync(configPath));
-} catch (e) {
-	console.log(`Could not parse config file at ${configPath}`);
-	process.exit(1);
-}
-
-let args = process.argv.splice(2, process.argv.length);
-let argString = args.join(" ").toLowerCase();
-let found = false;
-
-let success = output => {
-	found = true;
+	let output = authenticator.generateToken(secret);
 	console.log(output);
 
+	// Copy to macOS clipboard
 	if (os.platform() === "darwin") {
 		let proc = spawn("pbcopy");
 		proc.stdin.write(output);
 		proc.stdin.end();
 	}
-}
 
-tokens.forEach(token => {
-	let output = a.generateToken(token.secret);
+};
 
-	if (token.name.toLowerCase() === argString)
-		success(output);
-
-	token.alt.forEach(alt => {
-		if (argString === alt && !found)
-			success(output);
-	});
-});
-
-if (!found && args.length) {
-	console.log(`Could not find a "${argString}" token`);
-}
-
-if (!args.length) {
+let printHelp = tokens => {
 
 	console.log(`Usage: auth <name|alt>
 Generate your two factor authentication codes
@@ -64,4 +83,5 @@ Generate your two factor authentication codes
 	});
 
 	console.log();
-}
+
+};
