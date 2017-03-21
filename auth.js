@@ -3,7 +3,8 @@
 "use strict";
 
 const authenticator = require("authenticator");
-const spawn = require("child_process").spawn;
+const ncp = require("copy-paste");
+
 const fs = require("fs");
 const os = require("os");
 const path = require("path");
@@ -61,13 +62,7 @@ let generateToken = secret => {
 
 	let output = authenticator.generateToken(secret);
 	console.log(output);
-
-	// Copy to macOS clipboard
-	if (os.platform() === "darwin") {
-		let proc = spawn("pbcopy");
-		proc.stdin.write(output);
-		proc.stdin.end();
-	}
+	ncp.copy(output);
 
 };
 
