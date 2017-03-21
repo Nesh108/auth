@@ -5,7 +5,7 @@ const fs = require("fs");
 const os = require("os");
 const path = require("path");
 
-let configPath = path.join(os.homedir(), "/.config/auth/tokens");
+let configPath = path.join(os.homedir(), "/.local/share/auth/tokens");
 
 if (!fs.existsSync(configPath)) {
 	console.log(`Error: No token file found at ${configPath}`);

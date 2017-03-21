@@ -27,7 +27,7 @@ $ auth gh
 104295
 ```
 
-It reads the tokens from a `.json` file located at `$HOME/.config/auth/tokens` (not `tokens.json`). The contents of the file should resemble something like this:
+It reads the tokens from a `.json` file located at `$HOME/.local/share/auth/tokens` (not `tokens.json`). The contents of the file should resemble something like this:
 
 ```json
 [
