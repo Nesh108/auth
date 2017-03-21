@@ -10,7 +10,7 @@
     "otp",
     "password"
   ],
-  "version": "0.1.1",
+  "version": "0.2.0",
   "bugs": {
     "url": "https://github.com/sam3d/auth/issues",
     "email": "samholmes1337@gmail.com"
