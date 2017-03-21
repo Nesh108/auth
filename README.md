@@ -44,4 +44,4 @@ It reads the tokens from a `.json` file located at `$HOME/.local/share/auth/toke
 ]
 ```
 
-Spaces and capital letters will automatically be stripped from the `secret` field. The alt names are shorter names that you can use to generate tokens. On Mac OS X the token value will automatically be copied to the clipboard.
+Spaces and capital letters will automatically be stripped from the `secret` field. The alt names are shorter names that you can use to generate tokens. It uses the [`node-copy-paste`](https://github.com/xavi-/node-copy-paste) library to copy the token value to the clipboard on Mac OS X (using [`pbcopy`](https://developer.apple.com/library/mac/#documentation/Darwin/Reference/Manpages/man1/pbcopy.1.html)), Linux, FreeBSD & OpenBSD (using [`xclip`](http://www.cyberciti.biz/faq/xclip-linux-insert-files-command-output-intoclipboard/)) and on Windows (using [`clip`](http://www.labnol.org/software/tutorials/copy-dos-command-line-output-clipboard-clip-exe/2506/)).
