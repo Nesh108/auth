@@ -48,7 +48,7 @@ let searchTokens = (tokens, argString) => {
 	let token = tokens.find(token => {
 
 		let name = token.name.toLowerCase() === argString;
-		let alt = token.alt.find(alt => alt === argString);
+		let alt = token.alt.find(alt => alt.toLowerCase() === argString);
 		return name || alt;
 
 	});
