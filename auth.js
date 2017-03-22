@@ -36,25 +36,25 @@ let parseConfig = tokens => {
 let parseArgs = tokens => {
 
 	let args = process.argv.splice(2, process.argv.length);
-	let argString = args.join(" ").toLowerCase();
+	let query = args.join(" ").toLowerCase();
 
-	if (args.length) searchTokens(tokens, argString);
+	if (args.length) searchTokens(tokens, query);
 	else printHelp(tokens);
 
 };
 
-let searchTokens = (tokens, argString) => {
+let searchTokens = (tokens, query) => {
 
 	let token = tokens.find(token => {
 
-		let name = token.name.toLowerCase() === argString;
-		let alt = token.alt.find(alt => alt.toLowerCase() === argString);
+		let name = token.name.toLowerCase() === query;
+		let alt = token.alt.find(alt => alt.toLowerCase() === query);
 		return name || alt;
 
 	});
 
 	if (token) generateToken(token.secret);
-	else error(`Could not find a "${argString}" token`);
+	else error(`Could not find a "${query}" token`);
 
 }
 
