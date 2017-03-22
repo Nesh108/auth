@@ -21,10 +21,10 @@ fs.readFile(config, "utf8", (err, data) => {
 	parseConfig(data);
 });
 
-let parseConfig = tokens => {
+let parseConfig = config => {
 
 	try {
-		var tokens = JSON.parse(tokens);
+		var tokens = JSON.parse(config);
 	} catch (e) {
 		error(`Could not parse the file at ${config}`);
 	}
@@ -56,7 +56,7 @@ let searchTokens = (tokens, query) => {
 	if (token) generateToken(token.secret);
 	else error(`Could not find a "${query}" token`);
 
-}
+};
 
 let generateToken = secret => {
 
