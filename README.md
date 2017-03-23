@@ -44,4 +44,9 @@ It reads the tokens from a `.json` file located at `$HOME/.local/share/auth/toke
 ]
 ```
 
-Spaces and capital letters will automatically be stripped from the `secret` field. The alt names are shorter names that you can use to generate tokens. It uses the [`node-copy-paste`](https://github.com/xavi-/node-copy-paste) library to copy the token value to the clipboard on Mac OS X (using [`pbcopy`](https://developer.apple.com/library/mac/#documentation/Darwin/Reference/Manpages/man1/pbcopy.1.html)), Linux, FreeBSD & OpenBSD (using [`xclip`](http://www.cyberciti.biz/faq/xclip-linux-insert-files-command-output-intoclipboard/)) and on Windows (using [`clip`](http://www.labnol.org/software/tutorials/copy-dos-command-line-output-clipboard-clip-exe/2506/)).
+### Adding your own tokens
+If you wish to add your own token, do it in the structure above with a `name` string, `alt` array and a `secret` string (the spaces and capital letters don't matter and will be stripped out during parsing). The `alt` codes allow you to type `auth gh` instead of `auth github` (names are case insensitive).
+
+
+### Copying to the clipboard
+It uses the [`node-copy-paste`](https://github.com/xavi-/node-copy-paste) library to copy the token value to the clipboard on Mac OS X (using [`pbcopy`](https://developer.apple.com/library/mac/#documentation/Darwin/Reference/Manpages/man1/pbcopy.1.html)), Linux, FreeBSD & OpenBSD (using [`xclip`](http://www.cyberciti.biz/faq/xclip-linux-insert-files-command-output-intoclipboard/)) and on Windows (using [`clip`](http://www.labnol.org/software/tutorials/copy-dos-command-line-output-clipboard-clip-exe/2506/)).
