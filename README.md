@@ -16,7 +16,7 @@ The app can be used by the `auth` command.
 
 ```console
 $ auth
-Usage: auth <name|alt>
+Usage: auth <name|alt> [--qr]
 Generate your two factor authentication codes
 (Available tokens are shown below)
 
@@ -43,6 +43,8 @@ It reads the tokens from a `.json` file located at `$HOME/.local/share/auth/toke
 	}
 ]
 ```
+
+You can also generate QR code tokens to import into Google Authenticator or another similar application that accepts QR codes for quick and easy importing. For any code, just add the `--qr` flag and it will output both the secret and generated QR code (e.g. `auth gh --qr`);
 
 ### Adding your own tokens
 If you wish to add your own token, do it in the structure above with a `name` string, `alt` array and a `secret` string (the spaces and capital letters don't matter and will be stripped out during parsing). The `alt` codes allow you to type `auth gh` instead of `auth github` (names are case insensitive).
