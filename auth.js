@@ -4,6 +4,7 @@
 
 const authenticator = require("authenticator");
 const ncp = require("copy-paste");
+const qrcode = require("qrcode-terminal");
 
 const fs = require("fs");
 const os = require("os");
@@ -36,14 +37,16 @@ let parseConfig = config => {
 let parseArgs = tokens => {
 
 	let args = process.argv.splice(2, process.argv.length);
+	let flags = args.filter(arg => arg.substr(0, 2) === "--").map(arg => arg.substr(2));
+	args = args.filter(arg => arg.substr(0, 2) !== "--");
 	let query = args.join(" ").toLowerCase();
 
-	if (args.length) searchTokens(tokens, query);
+	if (args.length) searchTokens(tokens, query, flags);
 	else printHelp(tokens);
 
 };
 
-let searchTokens = (tokens, query) => {
+let searchTokens = (tokens, query, flags) => {
 
 	let token = tokens.find(token => {
 
@@ -53,9 +56,20 @@ let searchTokens = (tokens, query) => {
 
 	});
 
-	if (token) generateToken(token.secret);
+	if (token && !flags.indexOf("qr")) printqr(token);
+	else if (token) generateToken(token.secret);
 	else error(`Could not find a "${query}" token`);
 
+};
+
+let printqr = token => {
+	let url = `otpauth://totp/${token.name}?secret=${token.secret}`;
+	qrcode.generate(url);
+	console.log(`
+Generated QR Code for importing into Google Authenticator
+    Name: ${token.name}
+    Secret: ${token.secret}
+		`);
 };
 
 let generateToken = secret => {
@@ -68,7 +82,7 @@ let generateToken = secret => {
 
 let printHelp = tokens => {
 
-	console.log(`Usage: auth <name|alt>
+	console.log(`Usage: auth <name|alt> [--qr]
 Generate your two factor authentication codes
 (Available tokens are shown below)
 	`);
