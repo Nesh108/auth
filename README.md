@@ -5,10 +5,10 @@ A simple CLI app for managing your two-factor authentication tokens
 You can install with `npm install -g authcli`. If you do not wish to install from `npm`, you can install it manually:
 
 ```console
-git clone https://github.com/sam3d/auth
-cd ./auth
-npm install
-npm link
+$ git clone https://github.com/sam3d/auth
+$ cd ./auth
+$ npm install
+$ npm link
 ```
 
 ## Usage
