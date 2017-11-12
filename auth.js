@@ -70,6 +70,7 @@ let generateToken = secret => {
 	let output = authenticator.generateToken(secret);
 	console.log(output);
 	ncp.copy(output);
+	process.exit(0);
 };
 
 let printHelp = tokens => {
