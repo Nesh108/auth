@@ -5,6 +5,7 @@
 const authenticator = require("authenticator");
 const ncp = require("copy-paste");
 const qrcode = require("qrcode-terminal");
+const chalk = require("chalk");
 
 const fs = require("fs");
 const os = require("os");
@@ -79,7 +80,9 @@ Generate your two factor authentication codes
 	`);
 
 	tokens.forEach(token => {
-		console.log(`  ${token.name} (${token.alt.join(", ")})`);
+		process.stdout.write("  " + chalk.green(token.name) + " " + chalk.grey("("));
+		process.stdout.write(chalk.blue(token.alt.join(chalk.grey(", "))) + chalk.grey(")\n"));
+		// console.log(`  ${token.name} (${token.alt.join(", ")})`);
 	});
 
 	console.log();
