@@ -1,5 +1,9 @@
 # auth [![npm version](https://badge.fury.io/js/authcli.svg)](https://badge.fury.io/js/authcli)
-A simple CLI app for managing your two-factor authentication tokens
+_A simple CLI app for managing your two-factor authentication tokens_
+
+This is mostly a wrapper library that makes getting your auth tokens much easier, with **automated clipboard copy**, **QR code secret generation** (to easily re-add codes to your mobile apps) & **shortcut names** (to get the auth codes without having to type in the full name).
+
+![](https://i.imgur.com/S64dLTE.png)
 
 ## Installation
 You can install with `npm install -g authcli`. If you do not wish to install from `npm`, you can install it manually:
