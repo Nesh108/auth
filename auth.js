@@ -38,7 +38,7 @@ let parseArgs = tokens => {
 	args = args.filter(arg => arg.substr(0, 2) !== "--");
 	let query = args.join(" ").toLowerCase();
 
-	if (args.length) searchTokens(tokens, query, flags);
+	if (args.length || flags.length) searchTokens(tokens, query, flags);
 	else printHelp(tokens);
 };
 
@@ -50,7 +50,10 @@ let searchTokens = (tokens, query, flags) => {
 		return name || alt;
 	});
 
-	if (token && !flags.indexOf("qr")) printqr(token);
+	if (!flags.indexOf("qr")) {
+		if (token) printqr(token);
+		else tokens.forEach(token => printqr(token));
+	}
 	else if (token) generateToken(token.secret);
 	else error(`Could not find a "${query}" token`);
 };
