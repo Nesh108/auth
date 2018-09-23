@@ -59,7 +59,14 @@ let searchTokens = (tokens, query, flags) => {
 };
 
 let printqr = token => {
-	let url = `otpauth://totp/${token.name}?secret=${token.secret}`;
+	function encodeURL(token) {
+		const name = token.name.split(" ").join("%20");
+		const secret = token.secret.split(" ").join("").toUpperCase();
+
+		return `otpauth://totp/${name}?secret=${secret}`;
+	}
+
+	const url = encodeURL(token);
 	qrcode.generate(url);
 
 	console.log(`
